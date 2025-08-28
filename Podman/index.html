@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Podman Web Application</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 1000px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                color: white;
+                padding: 40px;
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+                font-weight: 300;
+                margin-bottom: 10px;
+            }
+
+            .header .subtitle {
+                font-size: 1.1rem;
+                opacity: 0.9;
+            }
+
+            .content {
+                padding: 40px;
+            }
+
+            .section {
+                margin-bottom: 30px;
+                padding: 25px;
+                background: #f8f9fa;
+                border-radius: 10px;
+                border-left: 4px solid #667eea;
+            }
+
+            .section h2 {
+                color: #2c3e50;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            .section p {
+                margin-bottom: 15px;
+                color: #555;
+                font-size: 1rem;
+            }
+
+            .code-block {
+                background: #2c3e50;
+                color: #ecf0f1;
+                padding: 20px;
+                border-radius: 8px;
+                font-family: "Courier New", monospace;
+                font-size: 0.9rem;
+                overflow-x: auto;
+                margin: 15px 0;
+                border: 1px solid #34495e;
+            }
+
+            .highlight {
+                background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+                padding: 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+                border-left: 4px solid #e74c3c;
+            }
+
+            .link-section {
+                background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+                padding: 25px;
+                border-radius: 10px;
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .link-section a {
+                color: #2c3e50;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 1.2rem;
+                padding: 10px 20px;
+                border: 2px solid #2c3e50;
+                border-radius: 25px;
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+
+            .link-section a:hover {
+                background: #2c3e50;
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+            }
+
+            .step {
+                background: white;
+                margin: 15px 0;
+                padding: 20px;
+                border-radius: 8px;
+                border-left: 4px solid #3498db;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .step-number {
+                display: inline-block;
+                background: #3498db;
+                color: white;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 30px;
+                margin-right: 15px;
+                font-weight: bold;
+            }
+
+            .automation-section {
+                background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+                padding: 25px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+
+            .footer {
+                background: #2c3e50;
+                color: white;
+                text-align: center;
+                padding: 20px;
+                font-size: 0.9rem;
+            }
+
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                }
+
+                .header {
+                    padding: 25px;
+                }
+
+                .header h1 {
+                    font-size: 2rem;
+                }
+
+                .content {
+                    padding: 20px;
+                }
+
+                .section {
+                    padding: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>🐳 Practice with Podman</h1>
+                <p class="subtitle">A containerized web application tutorial</p>
+            </div>
+
+            <div class="content">
+                <div class="section">
+                    <h2>📋 Overview</h2>
+                    <p>
+                        This is a web application that demonstrates
+                        containerization using Podman. Follow the steps below to
+                        build, run, and manage your containerized application.
+                    </p>
+                </div>
+
+                <div class="section">
+                    <h2>🔧 Setup Instructions</h2>
+
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>Create the Dockerfile:</strong>
+                        <div class="code-block">
+                            FROM nginx:alpine COPY index.html
+                            /usr/share/nginx/html/index.html
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>Build the image:</strong>
+                        <div class="code-block">
+                            podman build -t helloworld-webapp .
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>Run the container:</strong>
+                        <div class="code-block">
+                            podman run -d --name "HelloWorldWebAppContainer" -p
+                            8080:80 helloworld-webapp
+                        </div>
+                    </div>
+                </div>
+
+                <div class="link-section">
+                    <h2>🌐 Access Your Application</h2>
+                    <p>Your web application is now running!</p>
+                    <a href="http://localhost:8080" target="_blank"
+                        >Open Application → http://localhost:8080</a
+                    >
+                </div>
+
+                <div class="section">
+                    <h2>🔄 Making Changes</h2>
+                    <p>To update your web application:</p>
+
+                    <div class="highlight">
+                        <p>
+                            <strong>💡 Tip:</strong> After editing the
+                            index.html file, rebuild your image and container
+                            with these commands:
+                        </p>
+                    </div>
+
+                    <p><strong>Rebuild the image:</strong></p>
+                    <div class="code-block">
+                        podman build -t helloworld-webapp .
+                    </div>
+
+                    <p><strong>Restart the container with updates:</strong></p>
+                    <div class="code-block">
+                        podman run -d --name "HelloWorldWebAppContainer" -p
+                        8080:80 --replace helloworld-webapp
+                    </div>
+                </div>
+
+                <div class="automation-section">
+                    <h2>🚀 Automation Script</h2>
+                    <p>
+                        Save time with this bash script that automates the build
+                        and run process:
+                    </p>
+                    <div class="code-block">
+                        #!/bin/bash echo "Building the image..." podman build -t
+                        helloworld-webapp . echo "Running the container..."
+                        podman run -d --replace --name
+                        "HelloWorldWebAppContainer" -p 8080:80 helloworld-webapp
+                        echo "✅ Container is running at http://localhost:8080"
+                    </div>
+                    <p>
+                        <em
+                            >Save this as <code>deploy.sh</code> and run with
+                            <code>chmod +x deploy.sh && ./deploy.sh</code></em
+                        >
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>🐳 Powered by Podman | Built with ❤️</p>
+            </div>
+        </div>
+    </body>
+</html>
